@@ -29,6 +29,8 @@
 		69FED1A51AAA5DA100B0E276 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		69FED1BC1AAA5E1D00B0E276 /* InfSmartQuotes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfSmartQuotes.h; sourceTree = "<group>"; };
 		69FED1BD1AAA5E1D00B0E276 /* InfSmartQuotes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfSmartQuotes.m; sourceTree = "<group>"; };
+		69FED1BF1AAA628D00B0E276 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		69FED1C01AAA629500B0E276 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +47,8 @@
 		69FED1891AAA5DA100B0E276 = {
 			isa = PBXGroup;
 			children = (
+				69FED1BF1AAA628D00B0E276 /* README.md */,
+				69FED1C01AAA629500B0E276 /* LICENSE */,
 				69FED1BB1AAA5E1D00B0E276 /* InfSmartQuotes */,
 				69FED1941AAA5DA100B0E276 /* SmartQuotesDemo */,
 				69FED1931AAA5DA100B0E276 /* Products */,
