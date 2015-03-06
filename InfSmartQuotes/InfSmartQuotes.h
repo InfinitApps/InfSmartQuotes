@@ -21,11 +21,11 @@
 //	}
 //
 //	- (void)enableSmartQuotes: (id) sender {
-//		[InfSmartQuotes enableSmartQuotes:YES];
+//		[InfSmartQuotes setSmartQuotesEnabled:YES];
 //	}
 //
 //	- (void)disableSmartQuotes: (id) sender {
-//		[InfSmartQuotes enableSmartQuotes:NO];
+//		[InfSmartQuotes setSmartQuotesEnabled:NO];
 //	}
 //
 // Then from someplace in your app, you need to add the menu items to the

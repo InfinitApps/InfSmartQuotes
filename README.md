@@ -12,13 +12,15 @@ For any text field or text view you want to support smart quotes, have the
 delegate for that view (usually the view controller) call the corresponding
 "shouldChange" method in InfSmartQuotes:
 
-	- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
-	{
+	- (BOOL)textView:(UITextView *)textView 
+			shouldChangeTextInRange:(NSRange)range 
+			replacementText:(NSString *)text {
 		return [InfSmartQuotes textView:textView shouldChangeTextInRange:range replacementText:text];
 	}
 
-	-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-	{
+	- (BOOL)textField:(UITextField *)textField 
+			shouldChangeCharactersInRange:(NSRange)range 
+			replacementString:(NSString *)string {
 		return [InfSmartQuotes textField:textField shouldChangeCharactersInRange:range replacementString:string];
 	}
 
@@ -31,11 +33,11 @@ you need to include the following in your view controller:
 	}
 
 	- (void)enableSmartQuotes: (id) sender {
-		[InfSmartQuotes enableSmartQuotes:YES];
+		[InfSmartQuotes setSmartQuotesEnabled:YES];
 	}
 
 	- (void)disableSmartQuotes: (id) sender {
-		[InfSmartQuotes enableSmartQuotes:NO];
+		[InfSmartQuotes setSmartQuotesEnabled:NO];
 	}
 
 Then from someplace in your app, you need to add the menu items to the
