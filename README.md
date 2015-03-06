@@ -2,11 +2,11 @@
 
 Helper code so iOS apps can implement smart quotes for text fields and text views.
 
-# Adding to your Project
+## Adding to your Project
 
 Simply drag the InfSmartQuotes.m and .h files into your project, whereever you deem appropriate.
 
-# How to Use
+## How to Use
 
 For any text field or text view you want to support smart quotes, have the
 delegate for that view (usually the view controller) call the corresponding
@@ -44,6 +44,6 @@ of other menu items):
 
 	[UIMenuController sharedMenuController].menuItems = [InfSmartQuotes menuItems];
 
-# License
+## License
 
 This code is covered under the MIT license.
