@@ -8,6 +8,8 @@
 
 #import "InfSmartQuotes.h"
 
+#import <objc/runtime.h>
+
 //------------------------------------------------------------------------------
 
 static NSString* replaceSmartQuotes(NSString* text, unichar beforeChar,
@@ -72,6 +74,21 @@ static NSString* replacedWithSmartQuotes(NSString* startText, NSRange range,
 
 //------------------------------------------------------------------------------
 
+static void* sInfSmartQuotesSettingContent;
+
+static BOOL isSettingContent(id view)
+{
+	return [objc_getAssociatedObject(view, sInfSmartQuotesSettingContent) boolValue];
+}
+
+static void setSettingContent(id view, BOOL setting)
+{
+	objc_setAssociatedObject(view, sInfSmartQuotesSettingContent, setting ? @(YES) : nil,
+							 OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+//------------------------------------------------------------------------------
+
 @implementation InfSmartQuotes
 
 #pragma mark - Delegate method implementations
@@ -83,12 +100,18 @@ static NSString* replacedWithSmartQuotes(NSString* startText, NSRange range,
 	if (![self smartQuotesEnabled])
 		return YES;
 	
+	if (isSettingContent(textView)) {
+		return YES;
+	}
+	
 	NSInteger length;
 	NSString* newViewText = replacedWithSmartQuotes(textView.text, range, text, &length);
 	
 	if (newViewText) {
+		setSettingContent(textView, YES);
 		textView.text = newViewText;
 		textView.selectedRange = NSMakeRange(range.location + length, 0);
+		setSettingContent(textView, NO);
 		
 		return NO;
 	}
@@ -103,15 +126,21 @@ static NSString* replacedWithSmartQuotes(NSString* startText, NSRange range,
 	if (![self smartQuotesEnabled])
 		return YES;
 	
+	if (isSettingContent(textField)) {
+		return YES;
+	}
+	
 	NSInteger length;
 	NSString* newViewText = replacedWithSmartQuotes(textField.text, range, text, &length);
 	
 	if (newViewText) {
+		setSettingContent(textField, YES);
 		textField.text = newViewText;
 		UITextPosition* caratPos = [textField positionFromPosition: textField.beginningOfDocument
 													   inDirection: UITextLayoutDirectionRight
 															offset: range.location + length];
 		textField.selectedTextRange = [textField textRangeFromPosition: caratPos toPosition:caratPos];
+		setSettingContent(textField, NO);
 		
 		return NO;
 	}
