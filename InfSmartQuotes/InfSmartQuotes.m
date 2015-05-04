@@ -101,7 +101,7 @@ static void setSettingContent(id view, BOOL setting)
 		return YES;
 	
 	if (isSettingContent(textView)) {
-		return YES;
+        return NO;  // we're changing it, don't accept any other outside changes (like auto-complete)
 	}
 	
 	NSInteger length;
@@ -127,7 +127,7 @@ static void setSettingContent(id view, BOOL setting)
 		return YES;
 	
 	if (isSettingContent(textField)) {
-		return YES;
+        return NO;  // we're changing it, don't accept any other outside changes (like auto-complete)
 	}
 	
 	NSInteger length;
