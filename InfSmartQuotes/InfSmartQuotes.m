@@ -16,29 +16,30 @@ static NSString* replaceSmartQuotes(NSString* text, unichar beforeChar,
 									NSString* straightQuote,
 									NSString* leftSmart, NSString* rightSmart)
 {
-	static NSCharacterSet* whitespace;
+	static NSCharacterSet* useOpenQuote = nil;
+	
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
-		whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+		NSMutableCharacterSet* fullSet = [NSMutableCharacterSet whitespaceAndNewlineCharacterSet];
+		[fullSet addCharactersInString: @"[{(:<="]; // Use open quote after certain special characters
+		useOpenQuote = [fullSet copy];
 	});
-	
-	BOOL changed = NO;
 	
 	while (true) {
 		NSRange r;
 		unichar prevChar = beforeChar;
 		r = [text rangeOfString: straightQuote];
 		
-		if (r.location == NSNotFound)
+		if (r.location == NSNotFound) {
 			break;
+		}
 		
-		if (r.location > 0)
+		if (r.location > 0) {
 			prevChar = [text characterAtIndex: r.location - 1];
+		}
 		
-		NSString* quote = [whitespace characterIsMember: prevChar] ? leftSmart : rightSmart;
+		NSString* quote = [useOpenQuote characterIsMember: prevChar] ? leftSmart : rightSmart;
 		text = [text stringByReplacingCharactersInRange: r withString: quote];
-		
-		changed = YES;
 	}
 	
 	return text;
